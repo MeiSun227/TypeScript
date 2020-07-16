@@ -9,7 +9,19 @@ interface ExerciseResult {
     rateDescription: String;
     success: boolean;
 }
+// const parseArguments = (args: Array<number>): ExerciseResult => {
+//     if (Number(args[3]) === 0)
+//         throw new Error("Height cannot be zero or negative")
 
+//     if (!isNaN(Number(args[2])) && !isNaN(Number(args[3]))) {
+//         return {
+//             weight: Number(args[2]),
+//             height: Number(args[3])
+//         }
+//     } else {
+//         throw new Error('Provided values were not numbers!');
+//     }
+// }
 let hoursList: number[]
 
 const targetSuccessfull = (hoursList: number[], target: number): boolean => {
@@ -38,10 +50,10 @@ const rateMeasure = (avgs: number, goal: number): number => {
     }
 }
 
-const getDesciption = (rating:number): string=>{
-    if(rating===3){
+const getDesciption = (rating: number): string => {
+    if (rating === 3) {
         return 'excellent job'
-    } else if(rating===2){
+    } else if (rating === 2) {
         return 'not too bad but could be done better'
     } else {
         return 'poor work'
@@ -61,13 +73,17 @@ const exerciseCalculate = (arr_hoursList: number[], target: number): ExerciseRes
         target: target,
         average: averageHour,
         rate: rating,
-        rateDescription:ratingDescription,
+        rateDescription: ratingDescription,
         success: success
     }
 }
 
+
 try {
-    console.log(exerciseCalculate([3, 0, 2, 4.5, 0, 3, 1], 3))
+    const targetValue: number = Number(process.argv[2])
+    const hoursList = process.argv.slice(3).map(hour => Number(hour))
+    const exerciseResult: ExerciseResult = exerciseCalculate(hoursList, targetValue)
+    console.log(exerciseResult)
 } catch (e) {
     console.log('Something went wrong, error message: ', e.message);
 }
