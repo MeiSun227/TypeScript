@@ -1,5 +1,5 @@
 
-type Result = String
+type Result = String;
 
 interface MultiplyValues {
     weight: number;
