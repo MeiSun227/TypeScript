@@ -1,4 +1,3 @@
-type result = string | number;
 
 interface ExerciseResult {
     periodLength: number;
@@ -47,7 +46,7 @@ const getDesciption = (rating: number): string => {
 };
 
 
-const exerciseCalculate = (arr_hoursList: number[], target: number): ExerciseResult => {
+export const exerciseCalculate = (arr_hoursList: number[], target: number): ExerciseResult => {
     const success = targetSuccessfull(arr_hoursList, target);
     const trainingDay = findTrainingDay(arr_hoursList);
     const averageHour = avgHours(arr_hoursList);
@@ -65,11 +64,3 @@ const exerciseCalculate = (arr_hoursList: number[], target: number): ExerciseRes
 };
 
 
-try {
-    const targetValue = Number(process.argv[2]);
-    const hoursList = process.argv.slice(3).map(hour => Number(hour));
-    const exerciseResult: ExerciseResult = exerciseCalculate(hoursList, targetValue);
-    console.log(exerciseResult);
-} catch (e) {
-    console.log('Something went wrong, error message: ${e.message}');
-}
