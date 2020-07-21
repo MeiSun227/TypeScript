@@ -9,6 +9,7 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static('build'))
 
+
 const PORT = 3001;
 
 app.get('/api/ping', (_req, res) => {
