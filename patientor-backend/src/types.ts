@@ -7,14 +7,19 @@ export interface DiagnoseEntry {
 
 export type NonLatinDiagnoseEntry = Omit<DiagnoseEntry, 'latin'>;
 
-export interface PatientEntry{
+export interface PatientEntry {
     id: string;
-    name:string;
+    name: string;
     dateOfBirth: string;
     ssn: string;
     gender: string;
-    occupation:string;
+    occupation: string;
 };
 export type NewPatientEntry = Omit<PatientEntry, 'id'>;
 
 export type NonSensetiveEntry = Omit<PatientEntry, 'ssn'>;
+
+export enum Gender {
+    Female = 'female',
+    Male = 'male'
+}
