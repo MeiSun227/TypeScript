@@ -47,13 +47,21 @@ const parseGender = (gender: any): Gender => {
     return gender;
 };
 
+const parseEntries = (entries: any[]): any[] => {
+    if (!entries) {
+        return [];
+    }
+    return entries
+}
+
 const toNewPatientEntry = (object: any): NewPatientEntry => {
     return {
         name: parseName(object.name),
         ssn: parseSsn(object.ssn),
         dateOfBirth: parseDateOfBirth(object.dateOfBirth),
         gender: parseGender(object.gender),
-        occupation: parseOccupation(object.occupation)
+        occupation: parseOccupation(object.occupation),
+        entries: parseEntries(object.entries)
     };
 };
 

@@ -1,5 +1,5 @@
 import patients from '../../data/patients';
-import { PatientEntry, NonSensetiveEntry,NewPatientEntry } from '../types';
+import { PatientEntry, NonSensetiveEntry, NewPatientEntry } from '../types';
 
 
 const getEntry = (): PatientEntry[] => {
@@ -8,7 +8,7 @@ const getEntry = (): PatientEntry[] => {
 };
 
 const getNonSensetiveEntry = (): NonSensetiveEntry[] => {
-  return patients.map(({ id, name, dateOfBirth, gender, occupation }) => ({ id, name, dateOfBirth, gender, occupation }))
+  return patients.map(({ id, name, dateOfBirth, gender, occupation, entries}) => ({ id, name, dateOfBirth, gender, occupation,entries }))
 };
 
 const addPatient = (entry: NewPatientEntry): PatientEntry => {
@@ -17,12 +17,18 @@ const addPatient = (entry: NewPatientEntry): PatientEntry => {
     ...entry
   }
   patients.push(newPatientEntry)
-  return(newPatientEntry)
-  
+  return (newPatientEntry)
+
 };
 
+const getPateintById = (id: string): PatientEntry | undefined => {
+  const entry = patients.find(p => p.id === id);
+  return entry;
+
+}
 export default {
   getEntry,
   addPatient,
-  getNonSensetiveEntry
+  getNonSensetiveEntry,
+  getPateintById
 };

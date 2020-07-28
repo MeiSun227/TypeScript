@@ -12,4 +12,5 @@ diagnosesRouter.post('/', (_req, res) => {
     res.send('');
 })
 
+
 export default diagnosesRouter ;

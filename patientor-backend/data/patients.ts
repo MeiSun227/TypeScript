@@ -50,4 +50,5 @@ const PatientEntries: PatientEntry [] = patientData.map(obj => {
     object.id = obj.id
     return object
   })
+  
 export default PatientEntries;
