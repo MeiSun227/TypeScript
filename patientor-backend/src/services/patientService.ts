@@ -1,4 +1,4 @@
-import patients from '../../data/patients';
+import patients from '../../data/patientswithEntries';
 import { PatientEntry, NonSensetiveEntry, NewPatientEntry } from '../types';
 
 
