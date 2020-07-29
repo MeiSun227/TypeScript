@@ -13,6 +13,7 @@ const PatientInfoPage: React.FC = () => {
 
     console.log(patients)
     let patient = { ...patients[id] };
+    console.log(patient)
 
     useEffect(() => {
         const fetchPatientList = async () => {
@@ -29,7 +30,7 @@ const PatientInfoPage: React.FC = () => {
     }, [id,dispatch]);
 
     return (
-        <PatientInfo name={patient.name}ssn={patient.ssn} id={patient.id} occupation={patient.occupation} gender={patient.gender}/>
+        <PatientInfo name={patient.name}ssn={patient.ssn} id={patient.id} occupation={patient.occupation} gender={patient.gender} entries={patient.entries} />
     )
 }
 
