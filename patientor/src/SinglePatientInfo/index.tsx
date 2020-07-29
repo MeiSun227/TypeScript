@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom"
-import { useStateValue } from "../state";
+import { useStateValue,getPatientById } from "../state";
 import { apiBaseUrl } from "../constants";
 import { Patient } from "../types";
 import PatientInfo from "../components/Patient";
@@ -20,13 +20,13 @@ const PatientInfoPage: React.FC = () => {
                 const { data: patientFromApi } = await axios.get<Patient>(
                     `${apiBaseUrl}/patients/${id}`
                 );
-                dispatch({ type: "GET_PATIENT_BY_ID", payload: patientFromApi });
+                dispatch(getPatientById(patientFromApi) );
             } catch (e) {
                 console.error(e);
             }
         };
         fetchPatientList();
-    }, [dispatch]);
+    }, [id,dispatch]);
 
     return (
         <PatientInfo name={patient.name}ssn={patient.ssn} id={patient.id} occupation={patient.occupation} gender={patient.gender}/>
