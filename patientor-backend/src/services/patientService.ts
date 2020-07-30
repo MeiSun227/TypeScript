@@ -18,10 +18,9 @@ const addPatient = (entry: NewPatientEntry): PatientEntry => {
   }
   patients.push(newPatientEntry)
   return (newPatientEntry)
-
 };
 
-const getPateintById = (id: string): PatientEntry | undefined => {
+const getPatientById = (id: string): PatientEntry | undefined => {
   const entry = patients.find(p => p.id === id);
   return entry;
 
@@ -30,5 +29,5 @@ export default {
   getEntry,
   addPatient,
   getNonSensetiveEntry,
-  getPateintById
+  getPatientById
 };

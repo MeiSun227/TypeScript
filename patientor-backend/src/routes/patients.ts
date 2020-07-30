@@ -22,7 +22,7 @@ patientRouter.post('/', (req, res) => {
 });
 
 patientRouter.get('/:id',(_req, res)=>{
-    const patient= patientService.getPateintById(_req.params.id)
+    const patient= patientService.getPatientById(_req.params.id)
 
     if(patient){
         res.send(patient)
