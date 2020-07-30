@@ -1,9 +1,25 @@
 export interface EntryProps {
   entry: Entry;
+  diagnoses: storedDiagnoses;
 }
 
 export interface EntriesProps {
   entries: Entry[];
+  diagnoses: storedDiagnoses
+}
+
+export interface PatientProps {
+  name: string | undefined;
+  ssn: string | undefined;
+  id: string | undefined;
+  occupation: string | undefined;
+  gender: Gender;
+  entries: Entry[];
+  diagnoses: storedDiagnoses;
+}
+
+export interface storedDiagnoses {
+  [code: string]: Diagnosis
 }
 
 export interface Diagnosis {
@@ -33,7 +49,7 @@ export interface BaseEntry {
   description: string;
   date: string;
   specialist: string;
-  diagnosisCodes?: Array<Diagnosis['code']>
+  diagnosisCodes: Array<Diagnosis['code']>
 }
 
 export enum HealthCheckRating {
@@ -47,27 +63,27 @@ export interface HealthCheckEntry extends BaseEntry {
   type: "HealthCheck";
   healthCheckRating: HealthCheckRating;
 }
-export interface HospitalEntry extends BaseEntry{
+export interface HospitalEntry extends BaseEntry {
   type: "Hospital";
   discharge: Discharge;
 
 }
 
-export interface OccupationalHealthcareEntry extends BaseEntry{
+export interface OccupationalHealthcareEntry extends BaseEntry {
   type: 'OccupationalHealthcare';
-  employerName:string;
+  employerName: string;
   sickLeave?: SickLeave;
 }
 
 export interface Discharge {
-  date:string;
+  date: string;
   criteria: string;
 }
 
-export interface SickLeave{
+export interface SickLeave {
   startDate: string;
-  endDate:string;
-} 
+  endDate: string;
+}
 
 export type Entry =
   | HospitalEntry

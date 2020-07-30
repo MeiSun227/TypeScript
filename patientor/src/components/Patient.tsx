@@ -1,6 +1,6 @@
 import React from "react";
 import { Icon, IconProps } from "semantic-ui-react";
-import { Gender, Entry, EntryProps, EntriesProps } from "../types";
+import { Entry, EntryProps, EntriesProps, PatientProps } from "../types";
 
 const genderIconProps = {
   male: { name: "mars" },
@@ -8,23 +8,23 @@ const genderIconProps = {
   other: { name: "genderless" },
 };
 
-interface PatientProps {
-  name: string | undefined;
-  ssn: string | undefined;
-  id: string | undefined;
-  occupation: string | undefined;
-  gender: Gender;
-  entries: Entry[];
-}
-
-
-
 const EntryComponent: React.FC<EntryProps> = (props) => {
-  return (
-    <><p>{props.entry.date} {props.entry.description}</p>
-    {props.entry.diagnosisCodes?.map((code: string) => <li key={code}>code:{code}</li>)}
-    </>
-  )
+  if (props.entry.diagnosisCodes !== undefined) {
+    const diagnoseList: string[] | undefined = props.entry.diagnosisCodes?.map((code: string) => `${code} ${props.diagnoses[code].name}`)
+    return (
+      <>
+        <p>{props.entry.date} {props.entry.description}</p>
+        {diagnoseList?.map((diagnoseRow: string) => <li>{diagnoseRow}</li>)}
+      </>
+    )
+  } else {
+    return (
+      <>
+        <p>{props.entry.date} {props.entry.description}</p>
+      </>
+    )
+  }
+
 };
 
 const EntriesComponent: React.FC<EntriesProps> = (props) => {
@@ -33,20 +33,21 @@ const EntriesComponent: React.FC<EntriesProps> = (props) => {
   }
   return (
     <>
-      {props.entries.map((entry: Entry) => (<EntryComponent key={entry.id}entry={entry}/>))}
+      {props.entries.map((entry: Entry) => (<EntryComponent key={entry.id} entry={entry} diagnoses={props.diagnoses} />))}
     </>
-
   )
 };
 
-const PatientInfo = ({ name, ssn, occupation, gender, entries}: PatientProps) => {
+const PatientInfo = ({ name, ssn, occupation, gender, entries, diagnoses }: PatientProps) => {
   return (
     <div>
       <h2>{name} <Icon {...genderIconProps[gender] as Readonly<IconProps>} /></h2>
       <div><p>Snn: {ssn}</p></div>
       <div><p>Occupation: {occupation}</p></div>
-      <div><p>Entries:</p></div>
-      <EntriesComponent entries={entries}/>
+      <br/>
+      <div><h3>Entries:</h3></div>
+      <br/>
+      <EntriesComponent entries={entries} diagnoses={diagnoses} />
     </div>
   )
 }
