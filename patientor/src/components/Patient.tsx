@@ -33,7 +33,6 @@ const DiagnosesComponent: React.FC<EntriesProps> = (props) => {
 }
 
 const EntryComponent: React.FC<EntryProps> = (props) => {
-  console.log(props.entry)
   if (props.entry.type === "HealthCheck") {
     return (
       <>

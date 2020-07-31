@@ -49,7 +49,7 @@ export interface BaseEntry {
   description: string;
   date: string;
   specialist: string;
-  diagnosisCodes: Array<Diagnosis['code']>
+  diagnosisCodes?: Array<Diagnosis['code']>
 }
 
 export enum HealthCheckRating {
@@ -89,3 +89,9 @@ export type Entry =
   | HospitalEntry
   | OccupationalHealthcareEntry
   | HealthCheckEntry
+
+type DistributiveOmit<T, K extends keyof any> = T extends any
+  ? Omit<T, K>
+  : never;
+
+export type NewEntry = DistributiveOmit<Entry, "id">;

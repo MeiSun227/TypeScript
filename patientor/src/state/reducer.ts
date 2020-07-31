@@ -47,6 +47,7 @@ export const setDiagnosisList = (diagnosis: Diagnosis[]): Action => {
   }
 }
 
+
 export const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "SET_PATIENT_LIST":
