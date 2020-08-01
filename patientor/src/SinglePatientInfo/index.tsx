@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom"
 import { useStateValue, getPatientById, setDiagnosisList } from "../state";
 import { apiBaseUrl } from "../constants";
-import { Patient, Diagnosis, HealthCheckEntry } from "../types";
+import { Patient, Diagnosis, HealthCheckEntry, NewEntry } from "../types";
 import PatientInfo from "../components/Patient";
 import { Button } from "semantic-ui-react";
 import AddEntryModal from "../AddEntryModal";
@@ -49,7 +49,7 @@ const PatientInfoPage: React.FC = () => {
         setError(undefined);
     };
 
-    const submitNewEntry = async (values: HealthCheckEntry) => {
+    const submitNewEntry = async (values: NewEntry) => {
         try {
             const { data: patientFromApi } = await axios.post<Patient>(
                 `${apiBaseUrl}/patients/${id}/entries`, values

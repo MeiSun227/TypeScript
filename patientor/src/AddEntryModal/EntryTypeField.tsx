@@ -1,14 +1,14 @@
 import React from "react";
-import { NumberField,TextField } from '../AddPatientModal/FormField'
-import { Entry} from "../types";
+import { NumberField, TextField } from '../AddPatientModal/FormField'
+import { Entry, EntryType } from "../types";
 import { Field } from "formik";
 
 interface Props {
-    entryType: Entry
+    entryType: EntryType
 }
 
-const entryTypeFields: React.FC<Props> = ({ entryType }) => {
-    if (entryType.type === "HealthCheck") {
+const EntryTypeFields: React.FC<Props> = ({ entryType }) => {
+    if (entryType === "HealthCheck") {
         return (
             <>
                 <Field
@@ -20,7 +20,7 @@ const entryTypeFields: React.FC<Props> = ({ entryType }) => {
                 />
             </>
         )
-    } else if (entryType.type === 'Hospital') {
+    } else if (entryType === 'OccupationalHealthcare') {
         return (
             <>
                 <Field
@@ -43,8 +43,26 @@ const entryTypeFields: React.FC<Props> = ({ entryType }) => {
                 />
             </>
         )
+    } else if (entryType === 'Hospital') {
+        return (
+            <>
+                <Field
+                    label="Date"
+                    placeholder="YYYY-MM-DD"
+                    name="discharge.date"
+                    component={TextField}
+                />
+                <Field
+                    label="Criteria"
+                    placeholder="Criteria"
+                    name="discharge.criteria"
+                    component={TextField}
+                />
+            </>
+        );
+    } else {
+        return null;
     }
-    else return null;
 }
 
-export default entryTypeFields;
+export default EntryTypeFields;
